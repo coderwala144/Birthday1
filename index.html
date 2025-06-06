@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy 18th Birthday!</title>
+<style>
+  /* Import Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Dancing+Script&display=swap');
+
+  :root {
+    --color-primary: #d6336c;
+    --color-secondary: #44012d;
+    --color-accent: #ff6584;
+    --color-bg: #ffffff;
+    --color-text: #4a4a4a;
+    --color-light-gray: #f7f7f7;
+    --transition-time: 1.8s;
+  }
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  main {
+    max-width: 700px;
+    width: 90vw;
+    background: var(--color-light-gray);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(214, 51, 108, 0.3);
+    padding: 3rem 2rem 4rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 0 0 0.3rem;
+    text-align: center;
+    letter-spacing: 0.08em;
+    user-select: none;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-text);
+    user-select: none;
+  }
+  button {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: white;
+    background: var(--color-primary);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    border-radius: 0.6rem;
+    transition: background-color 0.35s ease, transform 0.25s ease;
+    user-select: none;
+    box-shadow: 0 5px 10px rgba(214, 51, 108, 0.5);
+    display: block;
+    margin: 2rem auto 0;
+  }
+  button:hover {
+    background: var(--color-accent);
+    transform: scale(1.05);
+  }
+  button:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /* Page containers */
+  .page {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-time) ease, transform var(--transition-time) ease;
+  }
+  .page.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Balloons container */
+  .balloons {
+    position: relative;
+    height: 180px;
+    margin-bottom: 2rem;
+  }
+  .balloon {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 70px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: floatUp 12s ease-in-out infinite;
+    box-shadow: inset -8px -15px 15px rgba(255 255 255 / 0.5);
+  }
+  /* Balloon colors */
+  .balloon.red { background: #e63946; left: 10%; animation-delay: 0s;}
+  .balloon.pink { background: #ff6f91; left: 25%; animation-delay: 3s;}
+  .balloon.coral { background: #ff7f50; left: 40%; animation-delay: 6s;}
+  .balloon.mauve { background: #ad8a64; left: 55%; animation-delay: 1.5s;}
+  .balloon.peach { background: #ffb997; left: 70%; animation-delay: 4.5s;}
+  .balloon.charcoal { background: #4a4a4a; left: 85%; animation-delay: 7.5s;}
+
+  .string {
+    position: absolute;
+    bottom: -80px;
+    width: 2px;
+    height: 80px;
+    background: #999;
+    left: 50%;
+    filter: drop-shadow(0 1px 0 #666);
+  }
+
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0) translateX(0) rotate(0deg);}
+    50% { transform: translateY(-40px) translateX(10px) rotate(5deg);}
+  }
+
+  /* Cake container */
+  .cake-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  /* Cake styling */
+  .cake {
+    position: relative;
+    width: 220px;
+    height: 200px;
+    border-radius: 1.4rem 1.4rem 1.2rem 1.2rem;
+    background: linear-gradient(180deg, #fff0f5, #f57091);
+    box-shadow: 
+      inset 0 -10px 18px #d94e6b,
+      0 12px 25px rgb(214 51 108 / 0.35);
+  }
+  .cake-layer {
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    height: 60px;
+    background: #efc7d2;
+    border-radius: 1rem;
+    box-shadow: inset 0 -6px 10px #d74f72;
+  }
+  .layer1 { bottom: 0; }
+  .layer2 {
+    bottom: 62px;
+    background: linear-gradient(90deg, #f6e0e7, #f0bcc7);
+    box-shadow: inset 0 -8px 15px #de647f;
+  }
+  .cherry {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 50% 50%, #cf142b, #8b0000);
+    border-radius: 50%;
+    box-shadow:
+      inset 2px 2px 3px #ff4d6d;
+  }
+  .stem {
+    position: absolute;
+    top: -10px;
+    right: 37px;
+    width: 3px;
+    height: 12px;
+    background: #2f4f2f;
+    border-radius: 1.5px;
+    transform: rotate(-20deg);
+  }
+  .candle {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 58px;
+    background: linear-gradient(180deg, #fbe9e7, #f56a79);
+    border-radius: 6px 6px 2px 2px;
+    box-shadow: 0 5px 12px 2px rgba(245, 106, 121, 0.9);
+  }
+  .candle-flame {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(20deg);
+    width: 18px;
+    height: 28px;
+    background:
+      radial-gradient(ellipse at center, #fffa9c 30%, transparent 70%),
+      radial-gradient(ellipse at center, #ff9800 40%, transparent 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    filter: drop-shadow(0 0 4px #ffb347);
+    animation: flicker 1.5s infinite alternate ease-in-out;
+  }
+  @keyframes flicker {
+    0% { opacity: 0.8; transform: translateX(-50%) rotate(20deg) scale(1);}
+    100% { opacity: 1; transform: translateX(-50%) rotate(22deg) scale(1.05);}
+  }
+  .candle-number {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 800;
+    font-size: 18px;
+    color: #8b0000;
+    text-shadow: 0 0 3px #c73d41;
+    user-select: none;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Decorations */
+  .decorations {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    user-select: none;
+  }
+  .decor-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--color-primary) 55%, transparent 80%);
+    box-shadow: 0 0 5px rgba(214, 51, 108, 0.75);
+    animation: pulseDot 3s ease-in-out infinite;
+  }
+  .decor-dot:nth-child(2) {
+    background: radial-gradient(circle at center, #f6a5c0 55%, transparent 80%);
+    animation-delay: 0.75s;
+  }
+  .decor-dot:nth-child(3) {
+    background: radial-gradient(circle at center, #f78ca0 55%, transparent 80%);
+    animation-delay: 1.5s;
+  }
+  @keyframes pulseDot {
+    0%, 100% { transform: scale(1);}
+    50% { transform: scale(1.3);}
+  }
+
+  /* Special Message */
+  .special-message {
+    max-width: 600px;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(214, 51, 108, 0.3);
+    padding: 2rem 3rem;
+    margin: 0 auto;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.85rem;
+    line-height: 1.5;
+    color: #a83253;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+    transition: opacity 1.8s ease, transform 1.8s ease;
+    user-select: none;
+  }
+  .special-message.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+  }
+
+  /* Bouquet Image */
+  .bouquet-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .bouquet-img {
+    max-width: 90%;
+    max-height: 380px;
+    border-radius: 1rem;
+    box-shadow: 0 8px 18px rgba(214, 51, 108, 0.4);
+    user-select: none;
+  }
+
+  /* Final love message */
+  .final-love {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--color-secondary);
+    text-align: center;
+    margin-top: 2rem;
+    user-select: none;
+  }
+  .final-love .emoji {
+    font-size: 2.4rem;
+    margin-left: 0.3rem;
+  }
+
+  /* Navigation Buttons */
+  .nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.6rem;
+    margin-top: 2rem;
+  }
+  .nav-buttons button {
+    background: var(--color-secondary);
+    box-shadow: 0 4px 12px rgb(68 1 45 / 0.9);
+  }
+  .nav-buttons button:hover {
+    background: var(--color-primary);
+  }
+  .nav-buttons button:focus {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+</style>
+</head>
+<body>
+<main role="main" aria-label="Birthday card container">
+  <!-- Page 1: Welcome with balloons -->
+  <section id="page1" class="page active" aria-live="polite" aria-atomic="true">
+    <h1>Happy 18th Birthday!</h1>
+    <h2>Let's Celebrate This Special Day 🎉</h2>
+    <div class="balloons" aria-hidden="true" role="presentation">
+      <div class="balloon red"><div class="string"></div></div>
+      <div class="balloon pink"><div class="string"></div></div>
+      <div class="balloon coral"><div class="string"></div></div>
+      <div class="balloon mauve"><div class="string"></div></div>
+      <div class="balloon peach"><div class="string"></div></div>
+      <div class="balloon charcoal"><div class="string"></div></div>
+    </div>
+    <p>Welcome to your birthday card filled with love, joy, and beautiful wishes just for you.</p>
+    <nav class="nav-buttons" aria-label="Page navigation">
+      <button id="toPage2" aria-controls="page2" aria-label="Go to Cake">Next: Cake 🎂</button>
+    </nav>
+  </section>
+
+  <!-- Page 2: Cake with cherry and candle -->
+  <section id="page2" class="page" aria-live="polite" aria-atomic="true" tabindex="-1">
+    <h1>Cake Time!</h1>
+    <h2>Blow the Candle and Make a Wish</h2>
+    <div class="cake-container" aria-hidden="true" role="presentation">
+      <div class="cake" aria-label="Birthday cake with cherry on top and candle">
+        <div class="cake-layer layer1"></div>
+        <div class="cake-layer layer2"></div>
+        <div class="stem"></div>
+        <div class="cherry"></div>
+        <div class="candle" aria-label="Birthday candle">
+          <div class="candle-flame"></div>
+          <span class="candle-number" aria-label="Number eighteen">18</span>
+        </div>
+      </div>
+    </div>
+    <div class="decorations" aria-hidden="true" role="presentation">
+      <div class="decor-dot"></div>
+      <div class="decor-dot"></div>
+      <div class="decor-dot"></div>
+    </div>
+    <nav class="nav-buttons" aria-label="Page navigation">
+      <button id="toPage1" aria-controls="page1" aria-label="Back to Balloons">Back: Balloons 🎈</button>
+      <button id="toPage3" aria-controls="page3" aria-label="Go to Special Message">Next: Special Message 💌</button>
+    </nav>
+  </section>
+
+  <!-- Page 3: Special message with button and bouquet -->
+  <section id="page3" class="page" aria-live="polite" aria-atomic="true" tabindex="-1">
+    <h1>A Special Message</h1>
+    <h2>Just For You ❤️</h2>
+    <p>Click the button below to reveal something truly special.</p>
+    <button id="revealMessageBtn" aria-expanded="false">Reveal Message</button>
+    <div id="specialMessage" class="special-message" role="region" aria-live="polite" aria-atomic="true" tabindex="0">
+      <!-- Message appears here dynamically -->
+    </div>
+
+    <div class="bouquet-container" aria-hidden="true">
+      <img alt="Bouquet of 520 red roses" class="bouquet-img" src="https://sammygift.com/cdn/shop/products/9012287_740x.jpg?v=1547437935">
+    </div>
+
+    <div class="final-love" aria-label="Final love message">
+      Lotss of love <span class="emoji" aria-hidden="true">❤️🌹🎉🥰</span>
+    </div>
+    <nav class="nav-buttons" aria-label="Page navigation">
+      <button id="toPage2b" aria-controls="page2" aria-label="Back to Cake">Back: Cake 🎂</button>
+      <button id="toPage1b" aria-controls="page1" aria-label="Back to Balloons">Back: Balloons 🎈</button>
+    </nav>
+  </section>
+</main>
+
+<script>
+  // Page navigation logic with smooth animated transitions
+  const pages = {
+    page1: document.getElementById('page1'),
+    page2: document.getElementById('page2'),
+    page3: document.getElementById('page3')
+  };
+
+  // Buttons
+  const toPage2 = document.getElementById('toPage2');
+  const toPage1 = document.getElementById('toPage1');
+  const toPage3 = document.getElementById('toPage3');
+  const toPage2b = document.getElementById('toPage2b');
+  const toPage1b = document.getElementById('toPage1b');
+  const revealMessageBtn = document.getElementById('revealMessageBtn');
+  const specialMessage = document.getElementById('specialMessage');
+
+  function hideAllPages() {
+    Object.values(pages).forEach(page => {
+      page.classList.remove('active');
+      page.setAttribute('aria-hidden', 'true');
+      page.tabIndex = -1;
+    });
+  }
+  function showPage(page) {
+    hideAllPages();
+    pages[page].classList.add('active');
+    pages[page].setAttribute('aria-hidden', 'false');
+    pages[page].tabIndex = 0;
+    pages[page].focus();
+    specialMessage.classList.remove('show');
+    specialMessage.innerHTML = '';
+    revealMessageBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  toPage2.addEventListener('click', () => {
+    showPage('page2');
+  });
+
+  toPage1.addEventListener('click', () => {
+    showPage('page1');
+  });
+
+  toPage3.addEventListener('click', () => {
+    showPage('page3');
+  });
+
+  toPage2b.addEventListener('click', () => {
+    showPage('page2');
+  });
+
+  toPage1b.addEventListener('click', () => {
+    showPage('page1');
+  });
+
+  // Reveal special message button logic
+  revealMessageBtn.addEventListener('click', () => {
+    if (!specialMessage.classList.contains('show')) {
+      specialMessage.innerHTML = `
+        My dearest love,<br /><br />
+        On this beautiful 18th birthday, my heart overflows with joy and gratitude for the light you bring into my life.<br /><br />
+        You are the melody in my days, the warmth in my nights, and the reason my soul dances.<br /><br />
+        May your journey ahead be filled with endless happiness, love, and all the dreams your heart desires.<br /><br />
+        Happy Birthday, my love,my Queen. You mean everything to me.<br /><br />Thanks my darlinggg my masira for being in my life....<br/><br/>
+        Forever yours.
+      `;
+      specialMessage.classList.add('show');
+      revealMessageBtn.setAttribute('aria-expanded', 'true');
+      specialMessage.focus();
+    }
+  });
+
+  // On page load focus for accessibility
+  window.addEventListener('load', () => {
+    pages.page1.focus();
+  });
+</script>
+</body>
+</html>
+
